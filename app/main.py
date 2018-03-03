@@ -1,7 +1,6 @@
 import bottle
 import os
 import random
-import json
 import numpy as np
 
 
@@ -106,7 +105,7 @@ def chasin_ma_tail(my_snake, my_length, other_sneks):
     my_tail = my_snake[-1]
     x_diff = my_head[0] - my_tail[0]
     y_diff = my_head[1] - my_tail[1]
-    
+
 
     if x_diff > 0 and y_diff > 0:
 
