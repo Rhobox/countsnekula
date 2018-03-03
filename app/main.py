@@ -1,7 +1,7 @@
 import bottle
 import os
 import random
-import numpy as np
+import math
 
 
 @bottle.route('/static/<path:path>')
@@ -21,7 +21,7 @@ def food_sniffer(my_head, food_locs):
     for fud in food_locs:
         x_diff = abs(my_head[0] - fud[0])
         y_diff = abs(my_head[1] - fud[1])
-        magnitudes.append(np.sqrt(x_diff**2 + y_diff**2))
+        magnitudes.append(math.sqrt(x_diff**2 + y_diff**2))
 
     return magnitudes.index(min(magnitudes))
 
