@@ -11,6 +11,8 @@ def static(path):
 
 global width
 global height
+global jitter
+jitter = None
 
 
 def food_sniffer(my_head, food_locs):
@@ -100,15 +102,117 @@ def move_down(me, others):
     return True
 
 
+def square_cw(my_snake, my_length, other_sneks, recursive = False):
+    for x in range(1, my_length):
+        if my_length/x in range(x-1, x+1):
+            sq_width = x
+            sq_height = my_length/x
+
+    snek_x = []
+    snek_y = []
+    unique_x = []
+    unique_y = []
+
+    for coords in my_snake:
+        snek_x.append(coords[0])
+        snek_y.append(coords[1])
+
+    for x in snek_x:
+        if x not in unique_x:
+            unique_x.append(x)
+
+    for y in snek_y:
+        if y not in unique_y:
+            unique_y.append(y)
+
+    print(sq_width, len(unique_x))
+    if len(unique_x) < sq_width:
+        if move_left(my_snake, other_sneks):
+            return 'left'
+        elif move_right(my_snake, other_sneks):
+            return 'right'
+        elif not recursive:
+            return square_ccw(my_snake, my_length, other_sneks, True)
+
+    print(sq_height, len(unique_y))
+    if len(unique_y) < sq_height:
+        if move_up(my_snake, other_sneks):
+            return 'up'
+        elif move_down(my_snake, other_sneks):
+            return 'down'
+        elif not recursive:
+            return square_ccw(my_snake, my_length, other_sneks, True)
+
+    if move_right(my_snake, other_sneks):
+        return 'right'
+    elif move_down(my_snake, other_sneks):
+        return 'down'
+
+    return None
+
+
+def square_ccw(my_snake, my_length, other_sneks, recursive = False):
+    for x in range(1, my_length):
+        if my_length / x in range(x - 1, x + 1):
+            sq_width = x
+            sq_height = my_length / x
+
+    snek_x = []
+    snek_y = []
+    unique_x = []
+    unique_y = []
+
+    for coords in my_snake:
+        snek_x.append(coords[0])
+        snek_y.append(coords[1])
+
+    for x in snek_x:
+        if x not in unique_x:
+            unique_x.append(x)
+
+    for y in snek_y:
+        if y not in unique_y:
+            unique_y.append(y)
+
+    print(sq_width, len(unique_x))
+    if len(unique_x) < sq_width:
+        if move_left(my_snake, other_sneks):
+            return 'left'
+        elif move_right(my_snake, other_sneks):
+            return 'right'
+        elif not recursive:
+            return square_cw(my_snake, my_length, other_sneks, True)
+
+    print(sq_height, len(unique_y))
+    if len(unique_y) < sq_height:
+        if move_up(my_snake, other_sneks):
+            return 'up'
+        elif move_down(my_snake, other_sneks):
+            return 'down'
+        elif not recursive:
+            return square_ccw(my_snake, my_length, other_sneks, True)
+
+    if move_left(my_snake, other_sneks):
+        return 'left'
+    elif move_up(my_snake, other_sneks):
+        return 'up'
+
+    return None
+
 def chasin_ma_tail(my_snake, my_length, other_sneks):
     my_head = my_snake[0]
     my_tail = my_snake[-1]
     x_diff = my_head[0] - my_tail[0]
     y_diff = my_head[1] - my_tail[1]
 
-
-    if x_diff > 0 and y_diff > 0:
-
+    if (x_diff > 0 and y_diff > 0) or (x_diff < 0 and y_diff > 0) and move_right(my_snake, other_sneks)\
+            and move_down(my_snake, other_sneks):
+        print('Sq_CW')
+        return square_cw(my_snake, my_length, other_sneks)
+    elif (x_diff > 0 and y_diff <0) or (x_diff < 0 and y_diff < 0) and move_left(my_snake, other_sneks)\
+            and move_up(my_snake, other_sneks):
+        print('sq_CCW')
+        return square_ccw(my_snake, my_length, other_sneks)
 
     if my_head[0] - my_tail[0] < 0:
         if move_right(my_snake, other_sneks):
@@ -210,7 +314,7 @@ def start():
 
     return {
         'color': '#00FF00',
-        'taunt': '{}'.format('STEEEEVE'),
+        'taunt': '{}'.format('It is I, Count Snekula!'),
         'head_type': 'bendr',
         'name': 'battlesnake-python'
     }
@@ -218,6 +322,13 @@ def start():
 
 @bottle.post('/move')
 def move():
+    global jitter
+    if jitter is None:
+        jitter = 0
+    elif jitter == 0:
+        jitter = 1
+    else:
+        jitter = 0
     data = bottle.request.json
 
     #for key in data:
@@ -225,13 +336,19 @@ def move():
 
     move_dir = move_snake(data)
 
-    print(move_dir)
+    if jitter == 0:
+        taunt = 'I\'ve got the jitters!'
+    else:
+        taunt = 'Jitter! Jitter! Jitter'
 
     return {
         'move': move_dir,
-        'taunt': 'Grab my Terry-fold!'
+        'taunt': taunt
     }
 
+@bottle.post('/end')
+def end():
+    return {}
 
 # Expose WSGI app (so gunicorn can find it)
 application = bottle.default_app()
