@@ -182,12 +182,10 @@ def chasin_ma_tail(my_snake, my_length, other_sneks):
     x_diff = my_head[0] - my_tail[0]
     y_diff = my_head[1] - my_tail[1]
 
-    if (x_diff > 0 and y_diff > 0) or (x_diff < 0 and y_diff > 0) and move_right(my_snake, other_sneks)\
-            and move_down(my_snake, other_sneks):
+    if (x_diff > 0 and y_diff > 0) or (x_diff < 0 and y_diff > 0):
         print('Sq_CW')
         return square_cw(my_snake, my_length, other_sneks)
-    elif (x_diff > 0 and y_diff <0) or (x_diff < 0 and y_diff < 0) and move_left(my_snake, other_sneks)\
-            and move_up(my_snake, other_sneks):
+    elif (x_diff > 0 and y_diff <0) or (x_diff < 0 and y_diff < 0):
         print('sq_CCW')
         return square_ccw(my_snake, my_length, other_sneks)
 
