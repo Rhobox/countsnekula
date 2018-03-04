@@ -32,7 +32,7 @@ def move_right(me, others):
     global height
     my_move = [me[0][0] + 1, me[0][1]]
     for snek in others:
-        if my_move in others[snek]:
+        if my_move in others[snek][0]:
             print('Another Snek! Right')
             return False
         elif my_move == [others[snek][0][0][0] + 1, others[snek][0][0][1]]:
@@ -61,7 +61,7 @@ def move_left(me, others):
     global height
     my_move = [me[0][0] - 1, me[0][1]]
     for snek in others:
-        if my_move in others[snek]:
+        if my_move in others[snek][0]:
             print('Another Snek! Left')
             return False
         elif my_move == [others[snek][0][0][0] + 1, others[snek][0][0][1]]:
@@ -90,7 +90,7 @@ def move_up(me, others):
     global height
     my_move = [me[0][0], me[0][1] - 1]
     for snek in others:
-        if my_move in others[snek]:
+        if my_move in others[snek][0]:
             print('Another Snek! Up')
             return False
         elif my_move == [others[snek][0][0][0] + 1, others[snek][0][0][1]]:
@@ -119,7 +119,7 @@ def move_down(me, others):
     global height
     my_move = [me[0][0], me[0][1] + 1]
     for snek in others:
-        if my_move in others[snek]:
+        if my_move in others[snek][0]:
             print('Another Snek! Down')
             return False
         elif my_move == [others[snek][0][0][0] + 1, others[snek][0][0][1]]:
