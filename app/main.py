@@ -144,45 +144,8 @@ def move_down(me, others):
 
 
 def square_cw(my_snake, my_length, other_sneks, recursive = False):
-    for x in range(1, my_length):
-        if my_length/x in range(x-1, x+1):
-            sq_width = x
-            sq_height = my_length/x
-
-    snek_x = []
-    snek_y = []
-    unique_x = []
-    unique_y = []
-
-    for coords in my_snake:
-        snek_x.append(coords[0])
-        snek_y.append(coords[1])
-
-    for x in snek_x:
-        if x not in unique_x:
-            unique_x.append(x)
-
-    for y in snek_y:
-        if y not in unique_y:
-            unique_y.append(y)
-
-    print(sq_width, len(unique_x))
-    if len(unique_x) < sq_width:
-        if move_left(my_snake, other_sneks):
-            return 'left'
-        elif move_right(my_snake, other_sneks):
-            return 'right'
-        elif not recursive:
-            return square_ccw(my_snake, my_length, other_sneks, True)
-
-    print(sq_height, len(unique_y))
-    if len(unique_y) < sq_height:
-        if move_up(my_snake, other_sneks):
-            return 'up'
-        elif move_down(my_snake, other_sneks):
-            return 'down'
-        elif not recursive:
-            return square_ccw(my_snake, my_length, other_sneks, True)
+    my_head = my_snake[0]
+    my_butt = my_snake[-1]
 
     if move_right(my_snake, other_sneks):
         return 'right'
@@ -193,45 +156,8 @@ def square_cw(my_snake, my_length, other_sneks, recursive = False):
 
 
 def square_ccw(my_snake, my_length, other_sneks, recursive = False):
-    for x in range(1, my_length):
-        if my_length / x in range(x - 1, x + 1):
-            sq_width = x
-            sq_height = my_length / x
-
-    snek_x = []
-    snek_y = []
-    unique_x = []
-    unique_y = []
-
-    for coords in my_snake:
-        snek_x.append(coords[0])
-        snek_y.append(coords[1])
-
-    for x in snek_x:
-        if x not in unique_x:
-            unique_x.append(x)
-
-    for y in snek_y:
-        if y not in unique_y:
-            unique_y.append(y)
-
-    print(sq_width, len(unique_x))
-    if len(unique_x) < sq_width:
-        if move_left(my_snake, other_sneks):
-            return 'left'
-        elif move_right(my_snake, other_sneks):
-            return 'right'
-        elif not recursive:
-            return square_cw(my_snake, my_length, other_sneks, True)
-
-    print(sq_height, len(unique_y))
-    if len(unique_y) < sq_height:
-        if move_up(my_snake, other_sneks):
-            return 'up'
-        elif move_down(my_snake, other_sneks):
-            return 'down'
-        elif not recursive:
-            return square_ccw(my_snake, my_length, other_sneks, True)
+    my_head = my_snake[0]
+    my_butt = my_snake[-1]
 
     if move_left(my_snake, other_sneks):
         return 'left'
