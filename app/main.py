@@ -27,6 +27,8 @@ def food_sniffer(my_head, food_locs):
 
 
 def move_right(me, others):
+    global width
+    global height
     my_move = [me[0][0] + 1, me[0][1]]
     for snek in others:
         if my_move in others[snek]:
@@ -54,6 +56,8 @@ def move_right(me, others):
 
 
 def move_left(me, others):
+    global width
+    global height
     my_move = [me[0][0] - 1, me[0][1]]
     for snek in others:
         if my_move in others[snek]:
@@ -81,6 +85,8 @@ def move_left(me, others):
 
 
 def move_up(me, others):
+    global width
+    global height
     my_move = [me[0][0], me[0][1] - 1]
     for snek in others:
         if my_move in others[snek]:
@@ -108,6 +114,8 @@ def move_up(me, others):
 
 
 def move_down(me, others):
+    global width
+    global height
     my_move = [me[0][0], me[0][1] + 1]
     for snek in others:
         if my_move in others[snek]:
