@@ -147,10 +147,15 @@ def square_cw(my_snake, my_length, other_sneks, recursive = False):
     my_head = my_snake[0]
     my_butt = my_snake[-1]
 
-    if move_right(my_snake, other_sneks):
-        return 'right'
-    elif move_down(my_snake, other_sneks):
-        return 'down'
+    x_diff = my_head[0] - my_butt[0]
+    y_diff = my_head[1] - my_butt[1]
+
+    if abs(x_diff) > abs(y_diff):
+        if move_right(my_snake, other_sneks):
+            return 'right'
+    else:
+        if move_down(my_snake, other_sneks):
+            return 'down'
 
     return None
 
@@ -159,10 +164,15 @@ def square_ccw(my_snake, my_length, other_sneks, recursive = False):
     my_head = my_snake[0]
     my_butt = my_snake[-1]
 
-    if move_left(my_snake, other_sneks):
-        return 'left'
-    elif move_up(my_snake, other_sneks):
-        return 'up'
+    x_diff = my_head[0] - my_butt[0]
+    y_diff = my_head[1] - my_butt[1]
+
+    if abs(x_diff) > abs(y_diff):
+        if move_left(my_snake, other_sneks):
+            return 'left'
+    else:
+        if move_up(my_snake, other_sneks):
+            return 'up'
 
     return None
 
