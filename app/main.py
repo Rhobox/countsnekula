@@ -29,16 +29,17 @@ def food_sniffer(my_head, food_locs):
 def move_right(me, others):
     my_move = [me[0][0] + 1, me[0][1]]
     for snek in others:
+        print(others[snek][0])
         if my_move in others[snek]:
             print('Another Snek! Right')
             return False
-        elif my_move == [others[snek][0]+1, others[snek][1]]:
+        elif my_move == [others[snek][0][0][0] + 1, others[snek][0][0][1]]:
             return False
-        elif my_move == [others[snek][0]-1, others[snek][1]]:
+        elif my_move == [others[snek][0][0][0] - 1, others[snek][0][0][1]]:
             return False
-        elif my_move == [others[snek][0], others[snek][1]-1]:
+        elif my_move == [others[snek][0][0][0], others[snek][0][0][1] - 1]:
             return False
-        elif my_move == [others[snek][0], others[snek][1]+1]:
+        elif my_move == [others[snek][0][0][0], others[snek][0][0][1] + 1]:
             return False
 
     for my_sick_bod in me:
@@ -56,16 +57,17 @@ def move_right(me, others):
 def move_left(me, others):
     my_move = [me[0][0] - 1, me[0][1]]
     for snek in others:
+        print(others[snek][0])
         if my_move in others[snek]:
             print('Another Snek! Left')
             return False
-        elif my_move == [others[snek][0] + 1, others[snek][1]]:
+        elif my_move == [others[snek][0][0][0] + 1, others[snek][0][0][1]]:
             return False
-        elif my_move == [others[snek][0] - 1, others[snek][1]]:
+        elif my_move == [others[snek][0][0][0] - 1, others[snek][0][0][1]]:
             return False
-        elif my_move == [others[snek][0], others[snek][1] - 1]:
+        elif my_move == [others[snek][0][0][0], others[snek][0][0][1] - 1]:
             return False
-        elif my_move == [others[snek][0], others[snek][1] + 1]:
+        elif my_move == [others[snek][0][0][0], others[snek][0][0][1] + 1]:
             return False
 
     for my_sick_bod in me:
@@ -83,16 +85,17 @@ def move_left(me, others):
 def move_up(me, others):
     my_move = [me[0][0], me[0][1] - 1]
     for snek in others:
+        print(others[snek][0])
         if my_move in others[snek]:
             print('Another Snek! Up')
             return False
-        elif my_move == [others[snek][0] + 1, others[snek][1]]:
+        elif my_move == [others[snek][0][0][0] + 1, others[snek][0][0][1]]:
             return False
-        elif my_move == [others[snek][0] - 1, others[snek][1]]:
+        elif my_move == [others[snek][0][0][0] - 1, others[snek][0][0][1]]:
             return False
-        elif my_move == [others[snek][0], others[snek][1] - 1]:
+        elif my_move == [others[snek][0][0][0], others[snek][0][0][1] - 1]:
             return False
-        elif my_move == [others[snek][0], others[snek][1] + 1]:
+        elif my_move == [others[snek][0][0][0], others[snek][0][0][1] + 1]:
             return False
 
     for my_sick_bod in me:
@@ -110,16 +113,17 @@ def move_up(me, others):
 def move_down(me, others):
     my_move = [me[0][0], me[0][1] + 1]
     for snek in others:
+        print(others[snek][0])
         if my_move in others[snek]:
             print('Another Snek! Down')
             return False
-        elif my_move == [others[snek][0] + 1, others[snek][1]]:
+        elif my_move == [others[snek][0][0][0] + 1, others[snek][0][0][1]]:
             return False
-        elif my_move == [others[snek][0] - 1, others[snek][1]]:
+        elif my_move == [others[snek][0][0][0] - 1, others[snek][0][0][1]]:
             return False
-        elif my_move == [others[snek][0], others[snek][1] - 1]:
+        elif my_move == [others[snek][0][0][0], others[snek][0][0][1] - 1]:
             return False
-        elif my_move == [others[snek][0], others[snek][1] + 1]:
+        elif my_move == [others[snek][0][0][0], others[snek][0][0][1] + 1]:
             return False
 
     for my_sick_bod in me:
