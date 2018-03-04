@@ -3,16 +3,17 @@ import os
 import random
 import math
 
+global width
+width = None
+global height
+height = None
+global jitter
+jitter = None
+
 
 @bottle.route('/static/<path:path>')
 def static(path):
     return bottle.static_file(path, root='static/')
-
-
-global width
-global height
-global jitter
-jitter = None
 
 
 def food_sniffer(my_head, food_locs):
