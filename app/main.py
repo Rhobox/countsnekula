@@ -32,6 +32,14 @@ def move_right(me, others):
         if my_move in others[snek]:
             print('Another Snek! Right')
             return False
+        elif my_move in [others[snek][0]+1, others[snek][1]]:
+            return False
+        elif my_move in [others[snek][0]-1, others[snek][1]]:
+            return False
+        elif my_move in [others[snek][0], others[snek][1]-1]:
+            return False
+        elif my_move in [others[snek][0], others[snek][1]+1]:
+            return False
 
     for my_sick_bod in me:
         if my_move == my_sick_bod:
@@ -50,6 +58,14 @@ def move_left(me, others):
     for snek in others:
         if my_move in others[snek]:
             print('Another Snek! Left')
+            return False
+        elif my_move in [others[snek][0]+1, others[snek][1]]:
+            return False
+        elif my_move in [others[snek][0]-1, others[snek][1]]:
+            return False
+        elif my_move in [others[snek][0], others[snek][1]-1]:
+            return False
+        elif my_move in [others[snek][0], others[snek][1]+1]:
             return False
 
     for my_sick_bod in me:
@@ -70,6 +86,14 @@ def move_up(me, others):
         if my_move in others[snek]:
             print('Another Snek! Up')
             return False
+        elif my_move in [others[snek][0]+1, others[snek][1]]:
+            return False
+        elif my_move in [others[snek][0]-1, others[snek][1]]:
+            return False
+        elif my_move in [others[snek][0], others[snek][1]-1]:
+            return False
+        elif my_move in [others[snek][0], others[snek][1]+1]:
+            return False
 
     for my_sick_bod in me:
         if my_move == my_sick_bod:
@@ -88,6 +112,14 @@ def move_down(me, others):
     for snek in others:
         if my_move in others[snek]:
             print('Another Snek! Down')
+            return False
+        elif my_move in [others[snek][0]+1, others[snek][1]]:
+            return False
+        elif my_move in [others[snek][0]-1, others[snek][1]]:
+            return False
+        elif my_move in [others[snek][0], others[snek][1]-1]:
+            return False
+        elif my_move in [others[snek][0], others[snek][1]+1]:
             return False
 
     for my_sick_bod in me:
