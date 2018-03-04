@@ -268,14 +268,13 @@ def move_snake(data):
         if where_to_go is not None:
             return where_to_go
 
-
     if move_right(my_snake, other_sneks):
         return 'right'
-    if move_down(my_snake, other_sneks):
+    elif move_down(my_snake, other_sneks):
         return 'down'
-    if move_up(my_snake, other_sneks):
+    elif move_up(my_snake, other_sneks):
         return 'up'
-    if move_left(my_snake, other_sneks):
+    elif move_left(my_snake, other_sneks):
         return 'left'
 
 @bottle.post('/start')
