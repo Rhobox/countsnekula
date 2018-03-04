@@ -301,8 +301,7 @@ def move():
     global jitter
     global width
     global height
-    width = int(data['width'])
-    height = int(data['height'])
+
     if jitter is None:
         jitter = 0
     elif jitter == 0:
@@ -310,7 +309,8 @@ def move():
     else:
         jitter = 0
     data = bottle.request.json
-
+    width = int(data['width'])
+    height = int(data['height'])
     #for key in data:
         #print(key, type(data[key]), data[key])
 
