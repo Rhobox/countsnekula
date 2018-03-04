@@ -4,9 +4,7 @@ import random
 import math
 
 global width
-width = None
 global height
-height = None
 global jitter
 jitter = None
 
@@ -176,7 +174,7 @@ def square_ccw(my_snake, my_length, other_sneks, recursive = False):
     else:
         if move_up(my_snake, other_sneks):
             return 'up'
-        
+
     if move_right(my_snake, other_sneks):
         return 'right'
 
@@ -211,8 +209,8 @@ def chasin_ma_tail(my_snake, my_length, other_sneks):
     return None
 
 def move_snake(data):
-    global width
-    global height
+    width = int(data['width'])
+    height = int(data['height']
     directions = ['up', 'down', 'left', 'right']
     my_snek_name = data['you']['name']
     my_snek_hangerings = data['you']['health']
@@ -303,6 +301,10 @@ def start():
 @bottle.post('/move')
 def move():
     global jitter
+    global width
+    global height
+    width = int(data['width'])
+    height = int(data['height'])
     if jitter is None:
         jitter = 0
     elif jitter == 0:
