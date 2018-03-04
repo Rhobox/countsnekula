@@ -209,8 +209,6 @@ def chasin_ma_tail(my_snake, my_length, other_sneks):
     return None
 
 def move_snake(data):
-    width = int(data['width'])
-    height = int(data['height']
     directions = ['up', 'down', 'left', 'right']
     my_snek_name = data['you']['name']
     my_snek_hangerings = data['you']['health']
